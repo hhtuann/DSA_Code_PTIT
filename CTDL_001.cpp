@@ -1,52 +1,35 @@
 #include <bits/stdc++.h>
 using namespace std;
-int ok = 0;
+#define LL long long
 
-void check(int a[], int n)
+int n;
+int f[100000];
+
+void solve(int i)
 {
-    string s = "";
-    for (int i = 0; i < n; i++)
-        s += to_string(a[i]);
-    string tmp = s;
-    reverse(tmp.begin(), tmp.end());
-    if (s == tmp)
+    for (int j = 0; j <= 1; j++)
     {
-        for (int i = 0; i < n; i++)
-            cout << a[i] << " ";
-        cout << endl;
+        f[i] = j;
+        if (i == (n + 1) / 2)
+        {
+            for (int x = 1; x <= (n + 1) / 2; x++)
+                cout << f[x] << " ";
+            for (int x = n / 2; x >= 1; x--)
+                cout << f[x] << " ";
+            cout << endl;
+        }
+        else
+            solve(i + 1);
     }
-}
-
-void khoitao(int a[], int n)
-{
-    for (int i = 0; i < n; i++)
-        a[i] = 0;
-}
-
-void sinh(int a[], int n)
-{
-    int i = n - 1;
-    while (a[i] == 1 && i >= 0)
-    {
-        a[i] = 0;
-        i--;
-    }
-    if (i == -1)
-        ok = 1;
-    else
-        a[i] = 1;
 }
 
 int main()
 {
-    int n;
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+    // input
     cin >> n;
-    int a[n + 5];
-    khoitao(a, n);
-    while (!ok)
-    {
-        check(a, n);
-        sinh(a, n);
-    }
+    solve(1);
     return 0;
 }
