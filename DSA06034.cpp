@@ -7,7 +7,31 @@ using namespace std;
 
 void hhtuann()
 {
-    cout << "Hello PTIT.";
+    int N, K;
+    cin >> N >> K;
+
+    map<int, int> mp;
+    for (int i = 1, x; i <= N; i++)
+    {
+        cin >> x;
+        mp[x]++;
+    }
+
+    int ans = 0;
+    for (auto &[x, y] : mp)
+    {
+        if (mp.count(K - x) && mp[K - x] > 0)
+        {
+            if (2 * x == K)
+                ans += y * (y - 1) / 2;
+            else
+                ans += y * mp[K - x];
+            mp[K - x] = 0;
+        }
+    }
+
+    cout << ans << endl;
+
     return;
 }
 signed main()
@@ -22,7 +46,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

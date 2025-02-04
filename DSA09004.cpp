@@ -5,26 +5,41 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
-void nextBinary(string &s)
+const int MAXN = 1e3 + 5;
+const int INF = 1e9 + 7;
+
+int v, e, u;
+vector<int> adj[MAXN];
+bool visited[MAXN];
+
+void DFS(int x)
 {
-    for (int i = s.size() - 1; i >= 0; i--)
+    cout << x << " ";
+    visited[x] = 1;
+
+    for (int y : adj[x])
     {
-        if (s[i] == '1')
-            s[i] = '0';
-        else
-        {
-            s[i] = '1';
-            break;
-        }
+        if (!visited[y])
+            DFS(y);
     }
 }
 void hhtuann()
 {
-    string s;
-    cin >> s;
+    cin >> v >> e >> u;
 
-    nextBinary(s);
-    cout << s << endl;
+    memset(adj, 0, sizeof(adj));
+    memset(visited, 0, sizeof(visited));
+
+    for (int i = 0; i < e; i++)
+    {
+        int x, y;
+        cin >> x >> y;
+        adj[x].push_back(y);
+        adj[y].push_back(x);
+    }
+
+    DFS(u);
+    cout << endl;
 
     return;
 }

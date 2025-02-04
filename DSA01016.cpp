@@ -7,30 +7,32 @@ using namespace std;
 
 const int MAXN = 1e5 + 5;
 int N, a[MAXN];
-bool isOK = true;
 
-void nextBinary()
+void Try(int i, int pre, int sum)
 {
-    int i = (N + 1) / 2;
-    while (i > 0 && a[i] == 1)
-        a[i--] = 0;
-    if (i > 0)
-        a[i] = 1;
-    else
-        isOK = false;
+    for (int j = pre; j > 0; j--)
+    {
+        if (sum + j > N)
+            continue;
+        a[i] = j;
+        if (sum + j == N)
+        {
+            cout << "(";
+            for (int x = 1; x < i; x++)
+                cout << a[x] << " ";
+            cout << a[i] << ") ";
+        }
+        else
+            Try(i + 1, j, sum + j);
+    }
 }
 void hhtuann()
 {
     cin >> N;
-    while (isOK)
-    {
-        for (int i = 1; i <= (N + 1) / 2; ++i)
-            cout << a[i] << " ";
-        for (int i = N / 2; i > 0; --i)
-            cout << a[i] << " ";
-        cout << endl;
-        nextBinary();
-    }
+
+    Try(1, N, 0);
+    cout << endl;
+
     return;
 }
 signed main()
@@ -45,7 +47,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

@@ -5,26 +5,50 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
+bool isHAHA(string &s)
+{
+    if (s.back() != 'A')
+        return false;
+    for (int i = 1; i < s.size(); ++i)
+        if (s[i] == 'H' && s[i - 1] == 'H')
+            return false;
+    return true;
+}
 void nextBinary(string &s)
 {
     for (int i = s.size() - 1; i >= 0; i--)
     {
-        if (s[i] == '1')
-            s[i] = '0';
+        if (s[i] == 'H')
+            s[i] = 'A';
         else
         {
-            s[i] = '1';
+            s[i] = 'H';
             break;
         }
     }
 }
 void hhtuann()
 {
-    string s;
-    cin >> s;
+    int N;
+    cin >> N;
+    N -= 2;
 
-    nextBinary(s);
-    cout << s << endl;
+    if (N == 0)
+    {
+        cout << "HA" << endl;
+        return;
+    }
+
+    string s;
+    for (int i = 1; i <= N; ++i)
+        s += 'A';
+
+    for (int i = 0; i < (1 << N); ++i)
+    {
+        if (isHAHA(s))
+            cout << "HA" << s << endl;
+        nextBinary(s);
+    }
 
     return;
 }

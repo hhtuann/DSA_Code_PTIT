@@ -6,31 +6,37 @@ using namespace std;
 #define LL long long
 
 const int MAXN = 1e5 + 5;
-int N, a[MAXN];
-bool isOK = true;
+int N, K, a[MAXN];
+bool isOK;
 
-void nextBinary()
+void nextCombination()
 {
-    int i = (N + 1) / 2;
-    while (i > 0 && a[i] == 1)
-        a[i--] = 0;
-    if (i > 0)
-        a[i] = 1;
-    else
-        isOK = false;
+    int i = K;
+    while (i > 0 && a[i] == N - K + i)
+        i--;
+
+    a[i] = (i > 0) ? a[i] + 1 : 0;
+    for (int j = i + 1; j <= K; ++j)
+        a[j] = a[i] + (j - i);
+
+    isOK = (i > 0);
 }
 void hhtuann()
 {
-    cin >> N;
+    cin >> N >> K;
+    for (int i = 1; i <= K; ++i)
+        a[i] = i;
+
+    isOK = true;
     while (isOK)
     {
-        for (int i = 1; i <= (N + 1) / 2; ++i)
-            cout << a[i] << " ";
-        for (int i = N / 2; i > 0; --i)
-            cout << a[i] << " ";
-        cout << endl;
-        nextBinary();
+        for (int i = 1; i <= K; ++i)
+            cout << a[i];
+        cout << " ";
+        nextCombination();
     }
+    cout << endl;
+
     return;
 }
 signed main()
@@ -45,7 +51,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

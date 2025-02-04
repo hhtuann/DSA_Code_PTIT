@@ -5,6 +5,13 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
+int countBits(string &s)
+{
+    int cnt = 0;
+    for (int i = 0; i < s.size(); ++i)
+        cnt += (s[i] == '1');
+    return cnt;
+}
 void nextBinary(string &s)
 {
     for (int i = s.size() - 1; i >= 0; i--)
@@ -20,11 +27,19 @@ void nextBinary(string &s)
 }
 void hhtuann()
 {
-    string s;
-    cin >> s;
+    int N, K;
+    cin >> N >> K;
 
-    nextBinary(s);
-    cout << s << endl;
+    string s;
+    for (int i = 1; i <= N; ++i)
+        s += '0';
+
+    for (int i = 0; i < (1 << N); ++i)
+    {
+        if (countBits(s) == K)
+            cout << s << endl;
+        nextBinary(s);
+    }
 
     return;
 }

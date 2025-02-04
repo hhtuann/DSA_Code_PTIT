@@ -5,9 +5,30 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
+const int MAXN = 1e5 + 5;
+int N, K, a[MAXN];
+
+void nextCombination()
+{
+    int i = K;
+    while (i > 0 && a[i] == N - K + i)
+        i--;
+
+    a[i] = (i > 0) ? a[i] + 1 : 0;
+    for (int j = i + 1; j <= K; ++j)
+        a[j] = a[i] + (j - i);
+}
 void hhtuann()
 {
-    cout << "Hello PTIT.";
+    cin >> N >> K;
+    for (int i = 1; i <= K; ++i)
+        cin >> a[i];
+
+    nextCombination();
+    for (int i = 1; i <= K; ++i)
+        cout << a[i] << " ";
+    cout << endl;
+
     return;
 }
 signed main()
@@ -22,7 +43,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

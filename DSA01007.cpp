@@ -5,9 +5,35 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
+void nextBinary(string &s)
+{
+    for (int i = s.size() - 1; i >= 0; i--)
+    {
+        if (s[i] == 'B')
+            s[i] = 'A';
+        else
+        {
+            s[i] = 'B';
+            break;
+        }
+    }
+}
 void hhtuann()
 {
-    cout << "Hello PTIT.";
+    int N;
+    cin >> N;
+
+    string s;
+    for (int i = 1; i <= N; ++i)
+        s += 'A';
+
+    for (int i = 0; i < (1 << N); ++i)
+    {
+        cout << s << " ";
+        nextBinary(s);
+    }
+    cout << endl;
+
     return;
 }
 signed main()
@@ -22,7 +48,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

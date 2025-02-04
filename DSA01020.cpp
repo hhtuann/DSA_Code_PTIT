@@ -5,9 +5,27 @@ using namespace std;
 #define endl '\n'
 #define LL long long
 
+void prevBinary(string &s)
+{
+    for (int i = s.size() - 1; i >= 0; i--)
+    {
+        if (s[i] == '0')
+            s[i] = '1';
+        else
+        {
+            s[i] = '0';
+            break;
+        }
+    }
+}
 void hhtuann()
 {
-    cout << "Hello PTIT.";
+    string s;
+    cin >> s;
+
+    prevBinary(s);
+    cout << s << endl;
+
     return;
 }
 signed main()
@@ -22,7 +40,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 

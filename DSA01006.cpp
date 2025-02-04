@@ -7,30 +7,42 @@ using namespace std;
 
 const int MAXN = 1e5 + 5;
 int N, a[MAXN];
-bool isOK = true;
+bool isOK;
 
-void nextBinary()
+void prevPermutation()
 {
-    int i = (N + 1) / 2;
-    while (i > 0 && a[i] == 1)
-        a[i--] = 0;
-    if (i > 0)
-        a[i] = 1;
-    else
-        isOK = false;
+    int i = N - 1;
+    while (i > 0 && a[i] < a[i + 1])
+        i--;
+
+    sort(a + i + 1, a + N + 1, greater<int>());
+    for (int j = i + 1; j <= N; ++j)
+    {
+        if (a[i] > a[j])
+        {
+            swap(a[i], a[j]);
+            break;
+        }
+    }
+
+    isOK = (i > 0);
 }
 void hhtuann()
 {
     cin >> N;
+    for (int i = 1; i <= N; ++i)
+        a[i] = N - i + 1;
+
+    isOK = true;
     while (isOK)
     {
-        for (int i = 1; i <= (N + 1) / 2; ++i)
-            cout << a[i] << " ";
-        for (int i = N / 2; i > 0; --i)
-            cout << a[i] << " ";
-        cout << endl;
-        nextBinary();
+        for (int i = 1; i <= N; ++i)
+            cout << a[i];
+        cout << " ";
+        prevPermutation();
     }
+    cout << endl;
+
     return;
 }
 signed main()
@@ -45,7 +57,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 
