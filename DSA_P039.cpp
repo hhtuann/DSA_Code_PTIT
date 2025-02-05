@@ -20,16 +20,16 @@ void hhtuann()
 
     vector<vector<int>> a(N, vector<int>(N, 0));
 
-    for (int i = 0; i < N; i++)
-        for (int j = 0; j < N; j++)
+    for (int i = 0; i < N; ++i)
+        for (int j = 0; j < N; ++j)
             cin >> a[i][j];
 
     vector<int> dp(1 << N, INT_MIN);
     dp[0] = 0;
 
-    for (int mask = 0; mask <= (1 << N); mask++)
+    for (int mask = 0; mask <= (1 << N); ++mask)
     {
-        for (int j = 0; j < N; j++)
+        for (int j = 0; j < N; ++j)
         {
             int cnt = __builtin_popcount(mask);
             if (mask & (1 << j))

@@ -17,7 +17,7 @@ int N, a[MAXN];
 
 void Try(int i, int pre, int sum)
 {
-    for (int j = pre; j > 0; j--)
+    for (int j = pre; j > 0; --j)
     {
         if (sum + j > N)
             continue;
@@ -25,7 +25,7 @@ void Try(int i, int pre, int sum)
         if (sum + j == N)
         {
             cout << "(";
-            for (int x = 1; x < i; x++)
+            for (int x = 1; x < i; ++x)
                 cout << a[x] << " ";
             cout << a[i] << ") ";
         }

@@ -45,7 +45,7 @@ void hhtuann()
     memset(adj, 0, sizeof(adj));
     memset(visited, 0, sizeof(visited));
 
-    for (int i = 0; i < e; i++)
+    for (int i = 0; i < e; ++i)
     {
         int x, y;
         cin >> x >> y;

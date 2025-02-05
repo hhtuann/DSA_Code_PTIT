@@ -15,7 +15,7 @@ const int INF = 1e9 + 7;
 
 void nextBinary(string &s)
 {
-    for (int i = s.size() - 1; i >= 0; i--)
+    for (int i = s.size() - 1; i >= 0; --i)
     {
         if (s[i] == '1')
             s[i] = '0';

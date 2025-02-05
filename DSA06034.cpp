@@ -19,7 +19,7 @@ void hhtuann()
     cin >> N >> K;
 
     map<int, int> mp;
-    for (int i = 1, x; i <= N; i++)
+    for (int i = 1, x; i <= N; ++i)
     {
         cin >> x;
         mp[x]++;
