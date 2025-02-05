@@ -1,11 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define NAME "Hoang Hoang Tuan"
+#ifdef HoangHoangTuan
+#include <debug.h>
+#else
+#define debug(...) 12
+#endif
+
 #define endl '\n'
-#define LL long long
+#define int long long
 
 const int MAXN = 1e5 + 5;
+const int INF = 1e9 + 7;
+
 int N, K, a[MAXN];
 bool isOK;
 

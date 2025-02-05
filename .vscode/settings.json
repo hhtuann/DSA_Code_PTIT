@@ -2,6 +2,8 @@
   "files.associations": {
     "*.embeddedhtml": "html",
     "iostream": "cpp",
-    "bitset": "cpp"
+    "bitset": "cpp",
+    "string": "cpp",
+    "format": "cpp"
   }
 }
