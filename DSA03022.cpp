@@ -10,41 +10,31 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
-
-void DFS(int x)
+// tích lớn nhất của 2 phần tử trong mảng
+int maxTwoProduct(vector<int> &a)
 {
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
-    {
-        if (!visited[y])
-            DFS(y);
-    }
+    int n = a.size();
+    return max(a[0] * a[1], a[n - 1] * a[n - 2]);
+}
+int maxThreeProduct(vector<int> &a)
+{
+    int n = a.size();
+    return max({a[0] * a[1] * a[2], a[n - 1] * a[n - 2] * a[n - 3], a[0] * a[1] * a[n - 1]});
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    int N;
+    cin >> N;
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    vector<int> a(N);
+    for (auto &x : a)
+        cin >> x;
 
-    for (int i = 0; i < E; ++i)
-    {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    DFS(u);
-    cout << endl;
+    sort(a.begin(), a.end());
+    cout << max(maxTwoProduct(a), maxThreeProduct(a)) << endl;
 
     return;
 }
@@ -60,7 +50,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 

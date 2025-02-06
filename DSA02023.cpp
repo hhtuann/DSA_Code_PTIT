@@ -10,41 +10,40 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
+int N, K, a[MAXN];
+vector<string> s;
 
-void DFS(int x)
+void Try(int i)
 {
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
+    if (i > K)
     {
-        if (!visited[y])
-            DFS(y);
+        for (int j = 1; j <= K; ++j)
+            cout << s[a[j] - 1] << " ";
+        cout << endl;
+        return;
+    }
+    for (int j = a[i - 1] + 1; j <= N - K + i; ++j)
+    {
+        a[i] = j;
+        Try(i + 1);
     }
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    cin >> N >> K;
+    s.resize(N);
+    for (auto &x : s)
+        cin >> x;
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    sort(s.begin(), s.end());
+    s.resize(unique(s.begin(), s.end()) - s.begin());
 
-    for (int i = 0; i < E; ++i)
-    {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    DFS(u);
-    cout << endl;
+    N = s.size();
+    a[0] = 0;
+    Try(1);
 
     return;
 }
@@ -60,7 +59,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 

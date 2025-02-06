@@ -10,41 +10,42 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
+int N, K, a[MAXN];
+bool isOK;
 
-void DFS(int x)
+void nextCombination()
 {
-    cout << x << " ";
-    visited[x] = 1;
+    int i = K;
+    while (i > 0 && a[i] == N - K + i)
+        i--;
 
-    for (int y : adj[x])
-    {
-        if (!visited[y])
-            DFS(y);
-    }
+    a[i] = (i > 0) ? a[i] + 1 : 0;
+    for (int j = i + 1; j <= K; ++j)
+        a[j] = a[i] + (j - i);
+
+    isOK = (i > 0);
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    cin >> N >> K;
+    vector<char> c(N);
+    for (int i = 0; i < N; ++i)
+        c[i] = 'A' + i;
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    for (int i = 1; i <= K; ++i)
+        a[i] = i;
 
-    for (int i = 0; i < E; ++i)
+    isOK = true;
+    while (isOK)
     {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
+        for (int i = 1; i <= K; ++i)
+            cout << c[a[i] - 1];
+        cout << endl;
+        nextCombination();
     }
-
-    DFS(u);
-    cout << endl;
 
     return;
 }

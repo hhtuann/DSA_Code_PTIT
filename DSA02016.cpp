@@ -13,47 +13,37 @@ using namespace std;
 const int MAXN = 1e3 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
+int N, ans, a[MAXN];
+bool row[MAXN], diag1[2 * MAXN], diag2[2 * MAXN];
 
-void BFS(int u)
+void Try(int i)
 {
-    queue<int> q;
-    q.push(u);
-    visited[u] = 1;
-
-    while (!q.empty())
+    if (i > N)
     {
-        int x = q.front();
-        q.pop();
-
-        cout << x << " ";
-
-        for (int y : adj[x])
-            if (!visited[y])
-            {
-                q.push(y);
-                visited[y] = 1;
-            }
+        ans++;
+        return;
+    }
+    for (int j = 1; j <= N; j++)
+    {
+        if (row[j] || diag1[N - i + j] || diag2[i + j - 1])
+            continue;
+        row[j] = diag1[N - i + j] = diag2[i + j - 1] = true;
+        a[i] = j;
+        Try(i + 1);
+        row[j] = diag1[N - i + j] = diag2[i + j - 1] = false;
     }
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    memset(row, 0, sizeof(row));
+    memset(diag1, 0, sizeof(diag1));
+    memset(diag2, 0, sizeof(diag2));
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    cin >> N;
 
-    for (int i = 0; i < E; ++i)
-    {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-    }
-
-    BFS(u);
-    cout << endl;
+    ans = 0;
+    Try(1);
+    cout << ans << endl;
 
     return;
 }

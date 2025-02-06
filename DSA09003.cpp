@@ -13,37 +13,14 @@ using namespace std;
 const int MAXN = 1e3 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
+int V, E;
 vector<int> adj[MAXN];
-bool visited[MAXN];
 
-void BFS(int u)
-{
-    queue<int> q;
-    q.push(u);
-    visited[u] = 1;
-
-    while (!q.empty())
-    {
-        int x = q.front();
-        q.pop();
-
-        cout << x << " ";
-
-        for (int y : adj[x])
-            if (!visited[y])
-            {
-                q.push(y);
-                visited[y] = 1;
-            }
-    }
-}
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    cin >> V >> E;
 
     memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
 
     for (int i = 0; i < E; ++i)
     {
@@ -52,8 +29,13 @@ void hhtuann()
         adj[x].push_back(y);
     }
 
-    BFS(u);
-    cout << endl;
+    for (int i = 1; i <= V; ++i)
+    {
+        cout << i << ": ";
+        for (auto &x : adj[i])
+            cout << x << " ";
+        cout << endl;
+    }
 
     return;
 }

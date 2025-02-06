@@ -13,7 +13,7 @@ using namespace std;
 const int MAXN = 1e3 + 5;
 const int INF = 1e9 + 7;
 
-int v, e, u;
+int V, E, u;
 vector<int> adj[MAXN];
 bool visited[MAXN];
 
@@ -30,12 +30,12 @@ void DFS(int x)
 }
 void hhtuann()
 {
-    cin >> v >> e >> u;
+    cin >> V >> E >> u;
 
     memset(adj, 0, sizeof(adj));
     memset(visited, 0, sizeof(visited));
 
-    for (int i = 0; i < e; ++i)
+    for (int i = 0; i < E; ++i)
     {
         int x, y;
         cin >> x >> y;

@@ -10,42 +10,25 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
-
-void DFS(int x)
+void Try(char sourse, char helper, char target, int n)
 {
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
+    if (n == 1)
     {
-        if (!visited[y])
-            DFS(y);
+        cout << sourse << " -> " << target << endl;
+        return;
     }
+    Try(sourse, target, helper, n - 1);
+    Try(sourse, helper, target, 1);
+    Try(helper, sourse, target, n - 1);
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
-
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
-
-    for (int i = 0; i < E; ++i)
-    {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    DFS(u);
-    cout << endl;
-
+    int N;
+    cin >> N;
+    Try('A', 'B', 'C', N);
     return;
 }
 signed main()
@@ -60,7 +43,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 

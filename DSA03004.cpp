@@ -10,41 +10,30 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
-
-void DFS(int x)
-{
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
-    {
-        if (!visited[y])
-            DFS(y);
-    }
-}
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    int N;
+    cin >> N;
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    vector<int> a(N);
+    for (auto &x : a)
+        cin >> x;
 
-    for (int i = 0; i < E; ++i)
+    sort(a.begin(), a.end());
+
+    int num1 = 0, num2 = 0;
+    for (int i = 0; i < N; ++i)
     {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
+        if (i % 2 == 0)
+            num1 = num1 * 10 + a[i];
+        else
+            num2 = num2 * 10 + a[i];
     }
 
-    DFS(u);
-    cout << endl;
+    cout << num1 + num2 << endl;
 
     return;
 }

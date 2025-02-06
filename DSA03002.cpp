@@ -10,41 +10,32 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int INF = 1e9 + 7;
 
-int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
-
-void DFS(int x)
+int changeToFive(int n)
 {
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
-    {
-        if (!visited[y])
-            DFS(y);
-    }
+    string s = to_string(n);
+    for (auto &x : s)
+        if (x == '6')
+            x = '5';
+    return stoll(s);
+}
+int changeToSix(int n)
+{
+    string s = to_string(n);
+    for (auto &x : s)
+        if (x == '5')
+            x = '6';
+    return stoll(s);
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    int a, b;
+    cin >> a >> b;
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
-
-    for (int i = 0; i < E; ++i)
-    {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
-    }
-
-    DFS(u);
-    cout << endl;
+    cout << changeToFive(a) + changeToFive(b) << " ";
+    cout << changeToSix(a) + changeToSix(b) << endl;
 
     return;
 }
@@ -60,7 +51,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 
