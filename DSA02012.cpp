@@ -11,7 +11,7 @@ using namespace std;
 #define int long long
 
 const int MAXN = 1e5 + 5;
-const int INF = 1e9 + 7;
+const int MOD = 1e9 + 7;
 
 int C(int n, int k)
 {

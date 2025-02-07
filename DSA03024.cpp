@@ -13,29 +13,31 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-int N, K, a[MAXN];
-
-void prevCombination()
-{
-    int i = K;
-    while (i > 0 && a[i] - 1 <= a[i - 1])
-        i--;
-
-    a[i] = (i > 0) ? a[i] - 1 : N - K;
-    for (int j = i + 1; j <= K; ++j)
-        a[j] = N - K + j;
-}
 void hhtuann()
 {
-    cin >> N >> K;
-    for (int i = 1; i <= K; ++i)
-        cin >> a[i];
+    int N;
+    cin >> N;
 
-    prevCombination();
-    for (int i = 1; i <= K; ++i)
-        cout << a[i] << " ";
+    vector<pair<int, int>> a(N);
+    for (auto &[x, y] : a)
+        cin >> x >> y;
 
-    cout << endl;
+    sort(a.begin(), a.end(), [&](auto x, auto y)
+         { if(x.second == y.second) 
+            return x.first < y.first;
+        return x.second < y.second; });
+
+    int ans = 0, prevFinish = 0;
+    for (auto [start, finish] : a)
+    {
+        if (start >= prevFinish)
+        {
+            ans++;
+            prevFinish = finish;
+        }
+    }
+
+    cout << ans << endl;
 
     return;
 }

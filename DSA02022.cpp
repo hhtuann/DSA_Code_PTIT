@@ -11,7 +11,7 @@ using namespace std;
 #define int long long
 
 const int MAXN = 1e5 + 5;
-const int INF = 1e9 + 7;
+const int MOD = 1e9 + 7;
 
 string days[] = {"02", "20", "22"};
 string years[] = {"2000", "2002", "2020", "2022", "2200", "2202", "2220", "2222"};
