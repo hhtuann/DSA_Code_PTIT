@@ -13,9 +13,25 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+int binpow(int a, int b)
+{
+    int res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = res * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
+    }
+    return res;
+}
 void hhtuann()
 {
-    // code here
+    int N, K;
+    cin >> N >> K;
+
+    cout << binpow(N, K) << endl;
+
     return;
 }
 signed main()
@@ -30,7 +46,7 @@ signed main()
     }
 
     int testcase = 1;
-    // cin >> testcase;
+    cin >> testcase;
     while (testcase--)
         hhtuann();
 
