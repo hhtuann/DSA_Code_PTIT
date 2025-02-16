@@ -13,33 +13,29 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+int binpow(int a, int b)
+{
+    int res = 1;
+    while (b > 0)
+    {
+        if (b & 1)
+            res = res * a % MOD;
+        a = a * a % MOD;
+        b >>= 1;
+    }
+    return res;
+}
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int A, B;
 
-    vector<pair<int, int>> a(N);
-    for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
-
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    while (cin >> A >> B)
     {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
-    }
+        if (A == 0 && B == 0)
+            break;
 
-    cout << ans << endl;
+        cout << binpow(A, B) << endl;
+    }
 
     return;
 }
@@ -55,7 +51,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 

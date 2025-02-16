@@ -10,36 +10,36 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e5 + 5;
+const int MAXN = 1e6 + 5;
 const int MOD = 1e9 + 7;
 
+vector<bool> isPrime(MAXN, true);
+
+void prepare()
+{
+    isPrime[0] = isPrime[1] = false;
+    for (int i = 2; i * i < MAXN; ++i)
+    {
+        if (isPrime[i])
+            for (int j = i * i; j < MAXN; j += i)
+                isPrime[j] = false;
+    }
+}
 void hhtuann()
 {
     int N;
     cin >> N;
 
-    vector<pair<int, int>> a(N);
-    for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
-
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    for (int i = 2; i <= N / 2; ++i)
     {
-        if (a[i].first >= last)
+        if (isPrime[i] && isPrime[N - i])
         {
-            ans++;
-            last = a[i].second;
+            cout << i << " " << N - i << endl;
+            return;
         }
     }
 
-    cout << ans << endl;
+    cout << -1 << endl;
 
     return;
 }
@@ -54,6 +54,7 @@ signed main()
         freopen("output.txt", "w", stdout);
     }
 
+    prepare();
     int testcase = 1;
     cin >> testcase;
     while (testcase--)

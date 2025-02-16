@@ -18,28 +18,14 @@ void hhtuann()
     int N;
     cin >> N;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N), dp(MAXN);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
-
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
     {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
+        cin >> x;
+        dp[x] = dp[x - 1] + 1;
     }
 
-    cout << ans << endl;
+    cout << N - *max_element(dp.begin(), dp.end()) << endl;
 
     return;
 }
@@ -55,7 +41,7 @@ signed main()
     }
 
     int testcase = 1;
-    cin >> testcase;
+    // cin >> testcase;
     while (testcase--)
         hhtuann();
 

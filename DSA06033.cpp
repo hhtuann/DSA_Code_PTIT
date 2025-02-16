@@ -18,25 +18,20 @@ void hhtuann()
     int N;
     cin >> N;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N), sufMax(N);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+        cin >> x;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
+    sufMax[N - 1] = a[N - 1];
+    for (int i = N - 2; i >= 0; --i)
+        sufMax[i] = max(sufMax[i + 1], a[i]);
 
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    int ans = -1;
+    for (int i = 0; i < N; i++)
     {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
+        int pos = sufMax.rend() - upper_bound(sufMax.rbegin(), sufMax.rend(), a[i]) - 1;
+        if (pos >= 0)
+            ans = max(ans, pos - i);
     }
 
     cout << ans << endl;

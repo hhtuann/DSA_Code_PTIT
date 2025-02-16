@@ -15,31 +15,24 @@ const int MOD = 1e9 + 7;
 
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int N, X;
+    cin >> N >> X;
 
-    vector<pair<int, int>> a(N);
-    for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+    vector<int> a(N);
+    int pos = 0;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    for (int i = 0, x; i < N; ++i)
     {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
+        cin >> x;
+        a[i] = x;
+        if (i && a[i - 1] > a[i])
+            pos = i;
     }
 
-    cout << ans << endl;
+    if (binary_search(a.begin(), a.begin() + pos, X))
+        cout << lower_bound(a.begin(), a.begin() + pos, X) - a.begin() + 1 << endl;
+    else
+        cout << lower_bound(a.begin() + pos, a.end(), X) - a.begin() + 1 << endl;
 
     return;
 }

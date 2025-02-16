@@ -18,28 +18,28 @@ void hhtuann()
     int N;
     cin >> N;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+        cin >> x;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
+    vector<int> prefix1(N), prefix2(N);
+    prefix1[0] = a[0];
+    for (int i = 1; i < N; ++i)
+        prefix1[i] = prefix1[i - 1] + a[i];
+    prefix2[N - 1] = a[N - 1];
+    for (int i = N - 2; i >= 0; --i)
+        prefix2[i] = prefix2[i + 1] + a[i];
 
-    int ans = 0, last = 0;
     for (int i = 0; i < N; ++i)
     {
-        if (a[i].first >= last)
+        if (prefix1[i] == prefix2[i])
         {
-            ans++;
-            last = a[i].second;
+            cout << i + 1 << endl;
+            return;
         }
     }
 
-    cout << ans << endl;
+    cout << -1 << endl;
 
     return;
 }

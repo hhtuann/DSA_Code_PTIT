@@ -13,33 +13,21 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+int findKthDigit(int n, int k)
+{
+    int x = 1 << (n - 1);
+    if (k == x)
+        return n;
+    if (k < x)
+        return findKthDigit(n - 1, k);
+    return findKthDigit(n - 1, k - x);
+}
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int N, K;
+    cin >> N >> K;
 
-    vector<pair<int, int>> a(N);
-    for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
-
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
-    {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
-    }
-
-    cout << ans << endl;
+    cout << char(findKthDigit(N, K) + 'A' - 1) << endl;
 
     return;
 }

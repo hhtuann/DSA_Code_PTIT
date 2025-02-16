@@ -13,33 +13,35 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+int findK(vector<int> &a, int N, int K)
+{
+    int l = 0, r = N - 1;
+    while (l <= r)
+    {
+        int mid = (l + r) >> 1;
+        if (a[mid] == K)
+            return mid;
+        if (a[mid] < K)
+            l = mid + 1;
+        else
+            r = mid - 1;
+    }
+    return -1;
+}
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int N, K;
+    cin >> N >> K;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+        cin >> x;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
-    {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
-    }
-
-    cout << ans << endl;
+    int ans = findK(a, N, K);
+    if (ans == -1)
+        cout << "NO" << endl;
+    else
+        cout << ans + 1 << endl;
 
     return;
 }

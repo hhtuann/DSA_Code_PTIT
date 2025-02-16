@@ -18,24 +18,17 @@ void hhtuann()
     int N;
     cin >> N;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+        cin >> x;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    int ans = INT_MAX;
+    for (int i = 0; i < N - 1; ++i)
     {
-        if (a[i].first >= last)
+        for (int j = i + 1; j < N; ++j)
         {
-            ans++;
-            last = a[i].second;
+            if (abs(a[i] + a[j]) < abs(ans))
+                ans = a[i] + a[j];
         }
     }
 

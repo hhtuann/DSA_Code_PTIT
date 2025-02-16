@@ -13,33 +13,31 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+int Fibo[100];
+
+void prepare()
+{
+    Fibo[1] = 1;
+    Fibo[2] = 1;
+    for (int i = 3; i <= 92; ++i)
+        Fibo[i] = Fibo[i - 1] + Fibo[i - 2];
+}
+char findKthDigit(int n, int k)
+{
+    if (n == 1)
+        return '0';
+    if (n == 2)
+        return '1';
+    if (k <= Fibo[n - 2])
+        return findKthDigit(n - 2, k);
+    return findKthDigit(n - 1, k - Fibo[n - 2]);
+}
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int N, K;
+    cin >> N >> K;
 
-    vector<pair<int, int>> a(N);
-    for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
-
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
-
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
-    {
-        if (a[i].first >= last)
-        {
-            ans++;
-            last = a[i].second;
-        }
-    }
-
-    cout << ans << endl;
+    cout << findKthDigit(N, K) << endl;
 
     return;
 }
@@ -54,6 +52,7 @@ signed main()
         freopen("output.txt", "w", stdout);
     }
 
+    prepare();
     int testcase = 1;
     cin >> testcase;
     while (testcase--)

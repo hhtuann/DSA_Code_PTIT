@@ -15,31 +15,33 @@ const int MOD = 1e9 + 7;
 
 void hhtuann()
 {
-    int N;
-    cin >> N;
+    int N, K;
+    cin >> N >> K;
 
-    vector<pair<int, int>> a(N);
+    vector<int> a(N);
     for (auto &x : a)
-        cin >> x.first;
-    for (auto &x : a)
-        cin >> x.second;
+        cin >> x;
 
-    sort(begin(a), end(a), [&](auto x, auto y)
-         { if(x.second == y.second)
-           return x.first < y.first;
-       return x.second < y.second; });
+    sort(a.begin(), a.end());
 
-    int ans = 0, last = 0;
-    for (int i = 0; i < N; ++i)
+    for (int i = 0; i < N - 2; ++i)
     {
-        if (a[i].first >= last)
+        if (a[i] >= K)
+            break;
+        for (int j = i + 1; j < N - 1; ++j)
         {
-            ans++;
-            last = a[i].second;
+            if (a[i] + a[j] >= K)
+                break;
+            int k = *lower_bound(a.begin() + j + 1, a.end(), K - a[i] - a[j]);
+            if (k == K - a[i] - a[j])
+            {
+                cout << "YES" << endl;
+                return;
+            }
         }
     }
 
-    cout << ans << endl;
+    cout << "NO" << endl;
 
     return;
 }
