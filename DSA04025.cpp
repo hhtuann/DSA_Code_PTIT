@@ -57,7 +57,8 @@ void hhtuann()
     int N;
     cin >> N;
 
-    Matrix a({{1, 1}, {1, 0}});
+    Matrix a({{1, 1},
+              {1, 0}});
     a = a.binpow(a, N - 1);
 
     cout << a.X[0][0] << endl;

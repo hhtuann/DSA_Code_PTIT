@@ -24,28 +24,28 @@ void hhtuann()
     for (auto &x : Y)
         cin >> x;
 
-    sort(Y.begin(), Y.end(), greater<int>());
+    sort(Y.begin(), Y.end());
 
     for (auto &x : X)
     {
         if (x == 1)
         {
-            int tmp = Y.rend() - upper_bound(Y.rbegin(), Y.rend(), 0) - 1;
-            ans += M - tmp - 1;
+            int tmp = upper_bound(Y.begin(), Y.end(), 0) - Y.begin();
+            ans += tmp;
         }
         else if (x == 2)
         {
-            int tmp = upper_bound(Y.rbegin(), Y.rend(), 4) - lower_bound(Y.rbegin(), Y.rend(), 2);
+            int tmp = upper_bound(Y.begin(), Y.end(), 4) - lower_bound(Y.begin(), Y.end(), 2);
             ans += M - tmp;
         }
         else if (x == 3)
         {
-            int tmp = upper_bound(Y.rbegin(), Y.rend(), 3) - lower_bound(Y.rbegin(), Y.rend(), 3);
+            int tmp = upper_bound(Y.begin(), Y.end(), 3) - lower_bound(Y.begin(), Y.end(), 3);
             ans += M - tmp;
         }
         else if (x > 3)
         {
-            int tmp = upper_bound(Y.rbegin(), Y.rend(), x) - lower_bound(Y.rbegin(), Y.rend(), 2);
+            int tmp = upper_bound(Y.begin(), Y.end(), x) - lower_bound(Y.begin(), Y.end(), 2);
             ans += M - tmp;
         }
     }
