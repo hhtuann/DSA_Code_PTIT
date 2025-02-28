@@ -23,7 +23,7 @@ void Try(vector<int> &a, int n)
         tmp[i] = a[i] + a[i + 1];
 
     cout << "[";
-    for (int i = 0; i < n - 1; i++)
+    for (int i = 0; i < n - 1; ++i)
         cout << a[i] << " ";
     cout << a.back() << "]" << endl;
 

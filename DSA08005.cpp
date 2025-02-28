@@ -13,34 +13,9 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-void Try(vector<int> &a, int n)
-{
-    if (n < 1)
-        return;
-
-    vector<int> tmp(n - 1);
-    for (int i = 0; i < n - 1; ++i)
-        tmp[i] = a[i] + a[i + 1];
-
-    Try(tmp, n - 1);
-
-    cout << "[";
-    for (int i = 0; i < n - 1; ++i)
-        cout << a[i] << " ";
-    cout << a.back() << "] ";
-}
 void hhtuann()
 {
-    int N;
-    cin >> N;
-
-    vector<int> a(N);
-    for (auto &x : a)
-        cin >> x;
-
-    Try(a, N);
-    cout << endl;
-
+    // code here
     return;
 }
 signed main()
