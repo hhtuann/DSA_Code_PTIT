@@ -13,7 +13,6 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-const int MAXN = 1e5 + 5;
 int N, K, a[MAXN];
 
 void nextCombination()
