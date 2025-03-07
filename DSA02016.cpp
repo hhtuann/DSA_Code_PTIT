@@ -20,10 +20,10 @@ void Try(int i)
 {
     if (i > N)
     {
-        ans++;
+        ++ans;
         return;
     }
-    for (int j = 1; j <= N; j++)
+    for (int j = 1; j <= N; ++j)
     {
         if (row[j] || diag1[N - i + j] || diag2[i + j - 1])
             continue;

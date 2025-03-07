@@ -27,7 +27,7 @@ void nextCombination()
 {
     int i = K;
     while (i > 0 && a[i] == N - K + i)
-        i--;
+        --i;
 
     a[i] = (i > 0) ? a[i] + 1 : 0;
     for (int j = i + 1; j <= K; ++j)
@@ -53,7 +53,7 @@ void hhtuann()
             cout << ans << endl;
             return;
         }
-        ans++;
+        ++ans;
         nextCombination();
     }
 

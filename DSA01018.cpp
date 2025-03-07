@@ -19,7 +19,7 @@ void prevCombination()
 {
     int i = K;
     while (i > 0 && a[i] - 1 <= a[i - 1])
-        i--;
+        --i;
 
     a[i] = (i > 0) ? a[i] - 1 : N - K;
     for (int j = i + 1; j <= K; ++j)

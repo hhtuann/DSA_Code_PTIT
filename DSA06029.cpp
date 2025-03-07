@@ -39,7 +39,7 @@ void insertionSort(vector<int> &arr)
         while (j >= 0 && key < arr[j])
         {
             arr[j + 1] = arr[j];
-            j--;
+            --j;
         }
         arr[j + 1] = key;
     }

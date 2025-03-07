@@ -22,16 +22,16 @@ struct Matrix
     }
     Matrix(vector<vector<int>> values)
     {
-        for (int i = 0; i < 2; i++)
-            for (int j = 0; j < 2; j++)
+        for (int i = 0; i < 2; ++i)
+            for (int j = 0; j < 2; ++j)
                 X[i][j] = values[i][j];
     }
     friend Matrix operator*(Matrix a, Matrix b)
     {
         Matrix c;
-        for (int i = 0; i < 2; i++)
+        for (int i = 0; i < 2; ++i)
         {
-            for (int j = 0; j < 2; j++)
+            for (int j = 0; j < 2; ++j)
             {
                 c.X[i][j] = a.X[i][0] * b.X[0][j] + a.X[i][1] * b.X[1][j];
                 c.X[i][j] %= MOD;

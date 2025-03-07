@@ -13,34 +13,48 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+deque<int> dq;
+
 void hhtuann()
 {
     string s;
+    int N;
     cin >> s;
 
-    if (s.size() % 2)
+    if (s == "PUSHFRONT")
     {
-        cout << -1 << endl;
-        return;
+        cin >> N;
+        dq.push_front(N);
     }
-
-    stack<char> st;
-    for (auto &c : s)
+    else if (s == "PRINTFRONT")
     {
-        if (!st.empty() && st.top() == '(' && c == ')')
-            st.pop();
+        if (dq.empty())
+            cout << "NONE" << endl;
         else
-            st.push(c);
+            cout << dq.front() << endl;
     }
-
-    int k = st.size(), n = 0;
-    while (!st.empty() && st.top() == '(')
+    else if (s == "POPFRONT")
     {
-        st.pop();
-        ++n;
+        if (!dq.empty())
+            dq.pop_front();
     }
-
-    cout << (k / 2 + n % 2) << endl;
+    else if (s == "PUSHBACK")
+    {
+        cin >> N;
+        dq.push_back(N);
+    }
+    else if (s == "PRINTBACK")
+    {
+        if (dq.empty())
+            cout << "NONE" << endl;
+        else
+            cout << dq.back() << endl;
+    }
+    else if (s == "POPBACK")
+    {
+        if (!dq.empty())
+            dq.pop_back();
+    }
 
     return;
 }

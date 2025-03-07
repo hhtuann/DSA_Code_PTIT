@@ -36,7 +36,7 @@ void hhtuann()
     {
         if (a[i].first >= last)
         {
-            ans++;
+            ++ans;
             last = a[i].second;
         }
     }

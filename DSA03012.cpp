@@ -21,7 +21,7 @@ void hhtuann()
     map<char, int> mp;
     for (auto &x : s)
     {
-        mp[x]++;
+        ++mp[x];
         if (mp[x] * 2 - 1 > s.size())
         {
             cout << -1 << endl;

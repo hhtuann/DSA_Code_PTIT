@@ -27,7 +27,7 @@ void hhtuann()
             int x;
             cin >> x;
             qu.push(x);
-        }KO
+        }
         else if (s == "POP")
         {
             if (!qu.empty())

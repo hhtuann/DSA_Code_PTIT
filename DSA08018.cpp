@@ -13,41 +13,35 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-int countBits(string &s)
-{
-    int cnt = 0;
-    for (int i = 0; i < s.size(); ++i)
-        cnt += (s[i] == '1');
-    return cnt;
-}
-void nextBinary(string &s)
-{
-    for (int i = s.size() - 1; i >= 0; --i)
-    {
-        if (s[i] == '1')
-            s[i] = '0';
-        else
-        {
-            s[i] = '1';
-            break;
-        }
-    }
-}
 void hhtuann()
 {
-    int N, K;
-    cin >> N >> K;
+    int N;
+    cin >> N;
+    N = pow(10, N);
 
-    string s;
-    for (int i = 1; i <= N; ++i)
-        s += '0';
+    queue<int> q;
+    vector<int> ans;
+    q.push(6);
+    q.push(8);
 
-    for (int i = 0; i < (1 << N); ++i)
+    while (!q.empty())
     {
-        if (countBits(s) == K)
-            cout << s << endl;
-        nextBinary(s);
+        int u = q.front();
+        q.pop();
+
+        if (u < N)
+            ans.emplace_back(u);
+        else
+            break;
+
+        q.push(u * 10 + 6);
+        q.push(u * 10 + 8);
     }
+
+    cout << ans.size() << endl;
+    for (auto &x : ans)
+        cout << x << " ";
+    cout << endl;
 
     return;
 }

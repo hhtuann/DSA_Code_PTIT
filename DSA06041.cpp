@@ -23,7 +23,7 @@ void hhtuann()
     for (int i = 0, x; i < N; ++i)
     {
         cin >> x;
-        mp[x]++;
+        ++mp[x];
         if (mp[x] > cntMax)
         {
             cntMax = mp[x];

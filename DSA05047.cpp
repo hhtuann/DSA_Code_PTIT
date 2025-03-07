@@ -44,7 +44,7 @@ void hhtuann()
         for (auto &mask : masks)
         {
             int curSum = 0;
-            for (int i = 1; i <= 4; i++)
+            for (int i = 1; i <= 4; ++i)
                 if (mask & (1 << (i - 1)))
                     curSum += a[i][j];
 

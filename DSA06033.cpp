@@ -27,7 +27,7 @@ void hhtuann()
         sufMax[i] = max(sufMax[i + 1], a[i]);
 
     int ans = -1;
-    for (int i = 0; i < N; i++)
+    for (int i = 0; i < N; ++i)
     {
         int pos = sufMax.rend() - upper_bound(sufMax.rbegin(), sufMax.rend(), a[i]) - 1;
         if (pos >= 0)

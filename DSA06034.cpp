@@ -22,7 +22,7 @@ void hhtuann()
     for (int i = 1, x; i <= N; ++i)
     {
         cin >> x;
-        mp[x]++;
+        ++mp[x];
     }
 
     int ans = 0;

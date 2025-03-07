@@ -22,9 +22,9 @@ void hhtuann()
     for (auto &c : s)
     {
         if (c == '+' || c == '-')
-            cnt1++;
+            ++cnt1;
         if (c == '(')
-            cnt2++;
+            ++cnt2;
     }
 
     if (cnt1 == cnt2)

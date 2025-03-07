@@ -35,7 +35,7 @@ void hhtuann()
             {
                 if (a[j] == b[i])
                 {
-                    ans++;
+                    ++ans;
                     swap(a[i], a[j]);
                     break;
                 }

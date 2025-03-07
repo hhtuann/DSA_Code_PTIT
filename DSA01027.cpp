@@ -20,7 +20,7 @@ void nextPermutation()
 {
     int i = N - 1;
     while (i > 0 && a[i] > a[i + 1])
-        i--;
+        --i;
 
     sort(a + i + 1, a + N + 1);
     for (int j = i + 1; j <= N; ++j)

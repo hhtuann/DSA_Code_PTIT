@@ -23,7 +23,7 @@ void hhtuann()
     {
         cin >> x;
         if (x == X)
-            countX++;
+            ++countX;
     }
 
     if (countX == 0)

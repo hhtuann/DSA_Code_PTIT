@@ -25,12 +25,8 @@ void hhtuann()
         cin >> x;
 
     for (int i = 0; i < N; ++i)
-    {
         for (int j = W; j >= w[i]; --j)
-        {
             dp[j] = max(dp[j], dp[j - w[i]] + v[i]);
-        }
-    }
 
     cout << *max_element(dp.begin(), dp.end()) << endl;
 

@@ -34,7 +34,7 @@ void merge(vector<int> &arr, int left, int mid, int right)
             arr[k] = L[i++];
         else
             arr[k] = R[j++];
-        k++;
+        ++k;
     }
 
     while (i < n1)

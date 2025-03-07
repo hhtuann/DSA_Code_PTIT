@@ -21,7 +21,7 @@ void nextCombination()
 {
     int i = K;
     while (i > 0 && a[i] == N - K + i)
-        i--;
+        --i;
 
     a[i] = (i > 0) ? a[i] + 1 : 0;
     for (int j = i + 1; j <= K; ++j)
@@ -51,7 +51,7 @@ void hhtuann()
     int ans = 0;
     for (int i = 1; i <= K; ++i)
         if (!mark[a[i]])
-            ans++;
+            ++ans;
 
     cout << ans << endl;
 

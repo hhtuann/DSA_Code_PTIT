@@ -21,21 +21,21 @@ bool isSpecial(string &s, int K)
     for (int i = 0; i < s.size(); ++i)
     {
         if (s[i] == 'A')
-            cnt++;
+            ++cnt;
         else
         {
             if (cnt == K)
-                check++;
+                ++check;
             cnt = 0;
         }
     }
     if (cnt == K)
-        check++;
+        ++check;
     return (check == 1);
 }
 void nextBinary(string &s)
 {
-    for (int i = s.size() - 1; i >= 0; i--)
+    for (int i = s.size() - 1; i >= 0; --i)
     {
         if (s[i] == 'B')
             s[i] = 'A';

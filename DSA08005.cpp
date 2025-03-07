@@ -13,9 +13,28 @@ using namespace std;
 const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
+string toBinary(int n)
+{
+    string res = "";
+    for (int i = n; i > 0; i /= 2)
+    {
+        if (i % 2)
+            res += '1';
+        else
+            res += '0';
+    }
+    reverse(res.begin(), res.end());
+    return res;
+}
 void hhtuann()
 {
-    // code here
+    int N;
+    cin >> N;
+
+    for (int i = 1; i <= N; ++i)
+        cout << toBinary(i) << " ";
+    cout << endl;
+
     return;
 }
 signed main()

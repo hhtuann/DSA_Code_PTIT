@@ -32,7 +32,7 @@ void hhtuann()
     {
         if (start >= prevFinish)
         {
-            ans++;
+            ++ans;
             prevFinish = finish;
         }
     }

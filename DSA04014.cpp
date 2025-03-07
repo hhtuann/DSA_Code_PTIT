@@ -40,20 +40,20 @@ void hhtuann()
     cin >> n;
 
     vector<int> a(n), compress(n);
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
         compress[i] = a[i];
     }
 
     sort(compress.begin(), compress.end());
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n; ++i)
         a[i] = lower_bound(compress.begin(), compress.end(), a[i]) - compress.begin() + 1;
 
     FenwickTree BIT(MAXN);
     int ans = 0;
 
-    for (int i = n - 1; i >= 0; i--)
+    for (int i = n - 1; i >= 0; --i)
     {
         ans += BIT.get(a[i] - 1);
         BIT.update(a[i], 1);

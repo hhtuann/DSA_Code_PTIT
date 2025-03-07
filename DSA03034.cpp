@@ -38,14 +38,14 @@ void hhtuann()
         {
             cout << a[i] << ' ';
             check = true;
-            i++, j++, k++;
+            ++i, ++j, ++k;
         }
         else if (a[i] < b[j])
-            i++;
+            ++i;
         else if (b[j] < c[k])
-            j++;
+            ++j;
         else
-            k++;
+            ++k;
     }
 
     if (!check)
