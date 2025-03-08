@@ -10,50 +10,41 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-int V, E, u;
-vector<vector<int>> adj(MAXN);
-vector<bool> visited(MAXN);
-
-void BFS(int u)
+void hhtuann()
 {
+    int N;
+    cin >> N;
+    N = pow(10, N);
+
     queue<int> q;
-    q.push(u);
-    visited[u] = 1;
+    stack<int> ans;
+    q.push(6);
+    q.push(8);
 
     while (!q.empty())
     {
-        int x = q.front();
+        int u = q.front();
         q.pop();
 
-        cout << x << " ";
+        if (u < N)
+            ans.push(u);
+        else
+            break;
 
-        for (int y : adj[x])
-            if (!visited[y])
-            {
-                q.push(y);
-                visited[y] = 1;
-            }
+        q.push(u * 10 + 6);
+        q.push(u * 10 + 8);
     }
-}
-void hhtuann()
-{
-    fill(adj.begin(), adj.end(), vector<int>());
-    fill(visited.begin(), visited.end(), 0);
 
-    cin >> V >> E >> u;
-
-    for (int i = 0; i < E; ++i)
+    cout << ans.size() << endl;
+    while (!ans.empty())
     {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
-        adj[y].push_back(x);
+        cout << ans.top() << " ";
+        ans.pop();
     }
 
-    BFS(u);
     cout << endl;
 
     return;

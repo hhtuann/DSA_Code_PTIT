@@ -10,29 +10,56 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-int V, E;
+int V, E, S, T;
 vector<vector<int>> adj(MAXN);
+vector<int> parent(MAXN);
 
-void hhtuann()
+void DFS(int u)
 {
-    fill(adj.begin(), adj.end(), vector<int>());
-
-    cin >> V >> E;
-
-    for (int i = 0; i < E; ++i)
+    for (auto v : adj[u])
     {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
+        if (parent[v] == -1)
+        {
+            parent[v] = u;
+            DFS(v);
+        }
     }
 
-    for (int i = 1; i <= V; ++i)
+    return;
+}
+void hhtuann()
+{
+    fill(parent.begin(), parent.end(), -1);
+    fill(adj.begin(), adj.end(), vector<int>());
+
+    cin >> V >> E >> S >> T;
+
+    for (int i = 0, u, v; i < E; ++i)
     {
-        cout << i << ": ";
-        for (auto &x : adj[i])
+        cin >> u >> v;
+        adj[u].push_back(v);
+    }
+
+    parent[S] = 0;
+    DFS(S);
+
+    if (parent[T] == -1)
+    {
+        cout << -1 << endl;
+        return;
+    }
+    else
+    {
+        vector<int> path;
+        for (int v = T; v != S; v = parent[v])
+            path.push_back(v);
+        path.push_back(S);
+
+        reverse(path.begin(), path.end());
+        for (auto &x : path)
             cout << x << " ";
         cout << endl;
     }

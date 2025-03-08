@@ -14,8 +14,8 @@ const int MAXN = 1e3 + 5;
 const int MOD = 1e9 + 7;
 
 int V, E, u;
-vector<int> adj[MAXN];
-bool visited[MAXN];
+vector<vector<int>> adj(MAXN);
+vector<bool> visited(MAXN);
 
 void DFS(int x)
 {
@@ -30,10 +30,10 @@ void DFS(int x)
 }
 void hhtuann()
 {
-    cin >> V >> E >> u;
+    fill(adj.begin(), adj.end(), vector<int>());
+    fill(visited.begin(), visited.end(), 0);
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, 0, sizeof(visited));
+    cin >> V >> E >> u;
 
     for (int i = 0; i < E; ++i)
     {

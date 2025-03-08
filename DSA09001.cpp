@@ -10,40 +10,29 @@ using namespace std;
 #define endl '\n'
 #define int long long
 
-const int MAXN = 1e3 + 5;
+const int MAXN = 1e5 + 5;
 const int MOD = 1e9 + 7;
 
-int V, E, u;
-vector<vector<int>> adj(MAXN);
-vector<bool> visited(MAXN);
-
-void DFS(int x)
-{
-    cout << x << " ";
-    visited[x] = 1;
-
-    for (int y : adj[x])
-    {
-        if (!visited[y])
-            DFS(y);
-    }
-}
 void hhtuann()
 {
-    fill(adj.begin(), adj.end(), vector<int>());
-    fill(visited.begin(), visited.end(), 0);
+    int V, E;
+    cin >> V >> E;
 
-    cin >> V >> E >> u;
-
-    for (int i = 0; i < E; ++i)
+    vector<vector<int>> adj(V + 1);
+    for (int i = 0, u, v; i < E; ++i)
     {
-        int x, y;
-        cin >> x >> y;
-        adj[x].push_back(y);
+        cin >> u >> v;
+        adj[u].push_back(v);
+        adj[v].push_back(u);
     }
 
-    DFS(u);
-    cout << endl;
+    for (int i = 1; i <= V; i++)
+    {
+        cout << i << ": ";
+        for (auto j : adj[i])
+            cout << j << " ";
+        cout << endl;
+    }
 
     return;
 }

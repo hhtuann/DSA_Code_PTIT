@@ -14,8 +14,9 @@ const int MAXN = 1e3 + 5;
 const int MOD = 1e9 + 7;
 
 int V, E;
-vector<int> adj[MAXN], parent(MAXN, -1);
-bool visited[MAXN];
+vector<int> parent(MAXN);
+vector<vector<int>> adj(MAXN);
+vector<bool> visited(MAXN);
 
 bool BFS(int u)
 {
@@ -44,10 +45,11 @@ bool BFS(int u)
 }
 void hhtuann()
 {
-    cin >> V >> E;
+    fill(adj.begin(), adj.end(), vector<int>());
+    fill(visited.begin(), visited.end(), 0);
+    fill(parent.begin(), parent.end(), -1);
 
-    memset(adj, 0, sizeof(adj));
-    memset(visited, false, sizeof(visited));
+    cin >> V >> E;
 
     for (int i = 0; i < E; ++i)
     {
